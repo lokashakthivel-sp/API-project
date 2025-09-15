@@ -1,0 +1,20 @@
+import { NEWS_API_KEY } from "../../config/config.js";
+import { NEWS_API_URL } from "../../config/config.js";
+
+export const getNewsData = async (category) => {
+  const url = `${NEWS_API_URL}?q=${encodeURIComponent(
+    category
+  )}&apiKey=${NEWS_API_KEY}&pageSize=5`; // Fetch top 5 articles
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error("Failed to fetch news data");
+    }
+    const data = await res.json();
+    console.log(data);
+    return data.articles; // Return the articles array
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};

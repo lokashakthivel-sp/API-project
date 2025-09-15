@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>API Integration</title>
+  </head>
+  <body>
+    <header>
+      <h1>API Integration Web App</h1>
+    </header>
+    <main>
+      <section id="weather-section" class="weather-section">
+        <h2>Weather</h2>
+        <form id="weather-form">
+          <input type="text" id="city" placeholder="Enter city name" required />
+          <button type="submit" id="weather-submit-btn">Get Weather</button>
+          <button type="button" id="weather-my-location">My Location</button>
+        </form>
+        <div id="weather-result"></div>
+      </section>
+
+      <section id="news-section">
+        <h2>News</h2>
+        <form id="news-form">
+          <select id="category-select">
+            <option value="general">General</option>
+            <option value="technology">Technology</option>
+            <option value="sports">Sports</option>
+            <option value="health">Health</option>
+          </select>
+          <button type="submit">Get News</button>
+        </form>
+        <div id="news-result"></div>
+        <!-- todo - can have other forms of retrieving top headlines by country/category or searching from everything by the user entered query -->
+      </section>
+    </main>
+  </body>
+  <script src="./script.js" type="module"></script>
+</html>
