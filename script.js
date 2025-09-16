@@ -1,13 +1,34 @@
 import { getWeatherData, getWeatherDataByCoords } from "./js/api/weatherAPI.js";
-import { getNewsData } from "./js/api/newsAPI.js";
+import { getQueryNewsData } from "./js/api/newsAPI.js";
 import { renderWeather, renderNews } from "./js/ui.js";
 
+const navButtons = document.querySelectorAll(".nav-btn");
+const sections = document.querySelectorAll(".content-section");
+const results = document.querySelectorAll(".result");
+console.log(results);
+
+navButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    // Remove active  from all
+    navButtons.forEach((b) => b.classList.remove("active"));
+    sections.forEach((s) => s.classList.remove("active"));
+    results.forEach((r) => {
+      r.innerHTML = "";
+      console.log(r);
+    });
+    // Add active to clicked button + corresponding section
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.section).classList.add("active");
+  });
+});
+
 const weather_form = document.getElementById("weather-form");
-const news_form = document.getElementById("news-form");
+const news_search_form = document.getElementById("news-search-form");
 
 weather_form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const city = document.getElementById("city").value.trim();
+  document.getElementById("city").value = "";
   if (!city) return;
   const weather_data = await getWeatherData(city);
   console.log(weather_data);
@@ -30,11 +51,12 @@ document.getElementById("weather-my-location").addEventListener("click", () => {
   }
 });
 
-//TODO - add more options for news like top headlines by country/category or search from everything by user entered query
-news_form.addEventListener("submit", async (e) => {
+news_search_form.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const topic = document.getElementById("category-select").value.trim();
-  if (!topic) return;
-  const news_data = await getNewsData(topic);
+  const query = document.getElementById("news-search").value.trim();
+  document.getElementById("news-search").value = "";
+  const sortOrder = document.getElementById("sorting-select").value;
+  if (!query && !sortOrder) return;
+  const news_data = await getQueryNewsData(query, sortOrder);
   renderNews(news_data);
 });

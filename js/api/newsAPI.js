@@ -1,10 +1,8 @@
 import { NEWS_API_KEY } from "../../config/config.js";
 import { NEWS_API_URL } from "../../config/config.js";
 
-export const getNewsData = async (category) => {
-  const url = `${NEWS_API_URL}?q=${encodeURIComponent(
-    category
-  )}&apiKey=${NEWS_API_KEY}&pageSize=5`; // Fetch top 5 articles
+export const getQueryNewsData = async (query, sortOrder = "publishedAt") => {
+  const url = `${NEWS_API_URL}/everything?q=${query}&sortBy=${sortOrder}&apiKey=${NEWS_API_KEY}&pageSize=5&language=en`;
   try {
     const res = await fetch(url);
     if (!res.ok) {
@@ -12,7 +10,7 @@ export const getNewsData = async (category) => {
     }
     const data = await res.json();
     console.log(data);
-    return data.articles; // Return the articles array
+    return data.articles;
   } catch (err) {
     console.error(err);
     return null;
