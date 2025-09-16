@@ -5,18 +5,33 @@ import { renderWeather, renderNews } from "./js/ui.js";
 const navButtons = document.querySelectorAll(".nav-btn");
 const sections = document.querySelectorAll(".content-section");
 const results = document.querySelectorAll(".result");
-console.log(results);
 
+// ham menu for smaller screen
+document.getElementById("menu-ham").addEventListener("click", () => {
+  document.getElementById("nav-menu").classList.toggle("show");
+  document.getElementById("menu-close").style.display = document
+    .getElementById("nav-menu")
+    .classList.contains("show")
+    ? "block"
+    : "none";
+});
+
+document.getElementById("menu-close").addEventListener("click", () => {
+  document.getElementById("nav-menu").classList.remove("show");
+  document.getElementById("menu-close").style.display = "none";
+});
+
+// for switching between the section from nav btns
 navButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // Remove active  from all
+    // remove active  from all
     navButtons.forEach((b) => b.classList.remove("active"));
     sections.forEach((s) => s.classList.remove("active"));
     results.forEach((r) => {
       r.innerHTML = "";
       console.log(r);
     });
-    // Add active to clicked button + corresponding section
+    // add active to clicked button and corresponding section
     btn.classList.add("active");
     document.getElementById(btn.dataset.section).classList.add("active");
   });
@@ -25,6 +40,7 @@ navButtons.forEach((btn) => {
 const weather_form = document.getElementById("weather-form");
 const news_search_form = document.getElementById("news-search-form");
 
+// searched location weather
 weather_form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const city = document.getElementById("city").value.trim();
@@ -35,6 +51,7 @@ weather_form.addEventListener("submit", async (e) => {
   renderWeather(weather_data);
 });
 
+// my location weather
 document.getElementById("weather-my-location").addEventListener("click", () => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -51,6 +68,7 @@ document.getElementById("weather-my-location").addEventListener("click", () => {
   }
 });
 
+// news of searched query
 news_search_form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const query = document.getElementById("news-search").value.trim();
