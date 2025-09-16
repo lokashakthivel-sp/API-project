@@ -15,7 +15,7 @@
           height="24px"
           viewBox="0 -960 960 960"
           width="24px"
-          fill="#ffef62"
+          fill="#402050"
         >
           <path
             d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"
@@ -26,14 +26,45 @@
         <button id="menu-close" class="menu-close-btn" style="display: none">
           &times;
         </button>
-        <button class="nav-btn active" data-section="weather-section">
-          Weather
-        </button>
+        <button class="nav-btn active" data-section="home-section">Home</button>
+        <button class="nav-btn" data-section="weather-section">Weather</button>
         <button class="nav-btn" data-section="news-section">News</button>
       </nav>
     </header>
     <main>
-      <section id="weather-section" class="content-section active">
+      <section id="home-section" class="content-section active">
+        <h2>Simple API Integration Web App</h2>
+        <p>
+          A tiny vanilla JavaScript project that fetches weather data
+          (<em>OpenWeather</em>) and news headlines (<em>NewsAPI</em>). Built
+          with no frameworks — just HTML, CSS, and JS modules.
+        </p>
+        <br />
+        <p>
+          <b>OpenWeatherAPI</b> - The OpenWeather API is a service provided by
+          <em>OpenWeather</em> that gives you access to weather data worldwide.
+          We can fetch current and forecasted weather.
+        </p>
+        <br />
+        <p>
+          <b>NewsAPI</b> - The News API is a web service that lets you fetch
+          news articles and headlines from thousands of news sources worldwide.
+        </p>
+        <br />
+        <hr style="border-color: #691a91" />
+        <div class="logos">
+          <div>
+            <img src="./assets/openweatherapi.png" alt="OpenWeather Logo" />
+            <p>OpenWeather</p>
+          </div>
+          <div>
+            <img src="./assets/NewsAPI.png" alt="NewsAPI Logo" />
+            <p>NewsAPI</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="weather-section" class="content-section">
         <h2>Weather</h2>
         <form id="weather-form">
           <input type="text" id="city" placeholder="Enter city name" required />
@@ -57,6 +88,9 @@
         </form>
         <div id="news-loader" class="loader"></div>
         <div id="news-result" class="result news-wrap"></div>
+        <div style="display: flex; justify-content: center">
+          <button id="load-more" style="display: none">Load More</button>
+        </div>
       </section>
     </main>
     <footer><p>Made with OpenWeatherApi and NewsApi</p></footer>

@@ -1,12 +1,10 @@
 :root {
   --bg-linear-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --primary-text-color: #cde229;
+  --primary-text-color: #402050;
   --header-bg-color: rgba(0, 0, 0, 0.1);
   --nav-btn: rgba(0, 0, 0, 0.7);
   --nav-btn-hover: rgba(0, 0, 0, 0.25);
-
   --card-text: #691a91;
-
   scroll-behavior: smooth;
 }
 
@@ -109,7 +107,7 @@ main {
   width: 100%;
   max-width: 900px;
   text-align: center;
-  padding: 1rem 0;
+  padding: 1rem;
 }
 
 .content-section.active {
@@ -117,6 +115,16 @@ main {
   visibility: visible;
   transform: translateY(0px);
   position: relative;
+}
+
+.logos {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+  justify-content: center;
+  img {
+    width: min(100px, 20vw);
+  }
 }
 
 form {
@@ -144,7 +152,8 @@ form input[type="text"]:focus {
 }
 
 form button,
-form select {
+form select,
+#load-more {
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
@@ -156,7 +165,8 @@ form select {
   transition: background 0.3s, transform 0.2s;
 }
 
-form button:hover {
+form button:hover,
+#load-more:hover {
   background: #cf9eff;
   transform: translateY(-2px);
 }
@@ -165,14 +175,15 @@ form select:hover {
   background: #cf9eff;
 }
 
-form button:active {
+form button:active,
+#load-more:active {
   transform: translateY(0);
 }
 
 .loader {
   display: none;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #0077ff;
+  border-top: 4px solid var(--card-text);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -277,15 +288,18 @@ form button:active {
   display: grid;
   place-items: center;
   width: 100%;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, 2fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 .news-card {
   width: 85%;
+  height: 100%;
   max-width: 520px;
   background: rgba(255, 255, 255, 0.6);
   border-radius: 14px;
-  padding: 2rem;
+  padding: max(1rem, 2vw);
   box-shadow: 0 8px 30px rgba(16, 24, 40, 0.08);
   opacity: 0;
 }
@@ -298,8 +312,11 @@ form button:active {
   }
   p {
     color: #234;
+    font-size: 0.8rem;
+    text-align: justify;
   }
   img {
+    margin-top: max(1rem, 2vw);
     width: 100%;
   }
 }
@@ -342,7 +359,7 @@ form button:active {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(40, 40, 60, 0.98);
+    background: rgba(255, 255, 255, 0.6);
     z-index: 9999;
     flex-direction: column;
     justify-content: center;
@@ -385,5 +402,9 @@ form button:active {
     color: var(--primary-text-color);
     cursor: pointer;
     z-index: 10001;
+  }
+
+  .news-wrap {
+    grid-template-columns: 1fr;
   }
 }
