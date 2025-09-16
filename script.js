@@ -6,21 +6,23 @@ const navButtons = document.querySelectorAll(".nav-btn");
 const sections = document.querySelectorAll(".content-section");
 const results = document.querySelectorAll(".result");
 
+const navMenu = document.getElementById("nav-menu");
+const menuClose = document.getElementById("menu-close");
+
 // ham menu for smaller screen
 document.getElementById("menu-ham").addEventListener("click", () => {
-  document.getElementById("nav-menu").classList.toggle("show");
-  document.getElementById("menu-close").style.display = document
-    .getElementById("nav-menu")
-    .classList.contains("show")
+  navMenu.classList.toggle("show");
+  menuClose.style.display = navMenu.classList.contains("show")
     ? "block"
     : "none";
 });
 
-document.getElementById("menu-close").addEventListener("click", () => {
-  document.getElementById("nav-menu").classList.remove("show");
-  document.getElementById("menu-close").style.display = "none";
+menuClose.addEventListener("click", () => {
+  navMenu.classList.remove("show");
+  menuClose.style.display = "none";
 });
 
+//! when switching there is a issue fix it, the forms move right before fading out down
 // for switching between the section from nav btns
 navButtons.forEach((btn) => {
   btn.addEventListener("click", () => {

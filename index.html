@@ -40,7 +40,13 @@
           <button type="submit" id="weather-submit-btn">Get Weather</button>
           <button type="button" id="weather-my-location">My Location</button>
         </form>
-        <div id="weather-result" class="result"></div>
+        <div id="weather-result" class="result weather-wrap">
+          <h3>Weather in ${data.name}</h3>
+          <p>Temperature: ${data.main.temp} °C</p>
+          <p>Weather: ${data.weather[0].description}</p>
+          <p>Humidity: ${data.main.humidity}%</p>
+          <p>Wind Speed: ${data.wind.speed} m/s</p>
+        </div>
       </section>
 
       <section id="news-section" class="content-section">

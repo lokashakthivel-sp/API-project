@@ -1,11 +1,11 @@
 :root {
   --bg-linear-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --primary-text-color: #ffef62;
+  --primary-text-color: #cde229;
   --header-bg-color: rgba(0, 0, 0, 0.1);
   --nav-btn: rgba(0, 0, 0, 0.7);
   --nav-btn-hover: rgba(0, 0, 0, 0.25);
-  --success: #00d419;
-  --error: #e20000;
+
+  --card-text: #691a91;
 
   scroll-behavior: smooth;
 }
@@ -60,6 +60,7 @@ nav {
   color: var(--nav-btn);
   transform: translateY(0px);
   font-size: clamp(1rem, 2vw, 1.2rem);
+  font-weight: 600;
   border: none;
   padding: 0.5rem 1rem;
   margin: 0 0.2rem;
@@ -91,6 +92,7 @@ main {
   margin: 1.5rem auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 2rem;
 }
 
@@ -102,6 +104,7 @@ main {
   position: absolute;
   width: 100%;
   max-width: 900px;
+  text-align: center;
 }
 
 .content-section.active {
@@ -109,6 +112,163 @@ main {
   visibility: visible;
   transform: translateY(0px);
   position: relative;
+}
+
+form {
+  margin: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+form input[type="text"] {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+form input[type="text"]:focus {
+  border-color: var(--card-text);
+  box-shadow: 0 0 6px rgba(0, 119, 255, 0.3);
+}
+
+form button,
+form select {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--card-text);
+  background: #bf7eff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+form button:hover {
+  background: #cf9eff;
+  transform: translateY(-2px);
+}
+
+form select:hover{
+    background: #cf9eff;
+}
+
+form button:active {
+  transform: translateY(0);
+}
+
+.weather-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.weather-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(16, 24, 40, 0.08);
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  font-size: large;
+  opacity: 0;
+}
+
+.weather-card.show {
+  opacity: 1;
+}
+
+.w-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.w-icon {
+  width: 96px;
+  height: 96px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 6px 18px rgba(3, 102, 214, 0.06);
+  overflow: hidden;
+}
+
+.w-temp {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--card-text);
+}
+
+.w-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.location {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--card-text);
+}
+
+.desc {
+  color: #234;
+  opacity: 0.85;
+}
+
+.stats {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stat {
+  background: rgba(2, 36, 79, 0.03);
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #234;
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.small {
+  font-size: 0.9rem;
+  color: #435a75;
+  opacity: 0.9;
+}
+
+@media (max-width: 560px) {
+  .weather-card {
+    grid-template-columns: 1fr;
+    padding: 0.9rem;
+  }
+  .w-icon {
+    width: 84px;
+    height: 84px;
+  }
+  .w-temp {
+    font-size: 1.6rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -178,15 +338,5 @@ main {
     color: var(--primary-text-color);
     cursor: pointer;
     z-index: 10001;
-  }
-}
-
-@media (max-width: 480px) {
-  /*   header h1 {
-    font-size: 1.5rem;
-  } */
-
-  section h2 {
-    font-size: 1.2rem;
   }
 }

@@ -5,13 +5,46 @@ export const renderWeather = (data) => {
     weatherResult.innerHTML = "<p>Error fetching weather data.</p>";
     return;
   }
-  weatherResult.innerHTML = `
-        <h3>Weather in ${data.name}</h3>
-        <p>Temperature: ${data.main.temp} °C</p>
-        <p>Weather: ${data.weather[0].description}</p>
-        <p>Humidity: ${data.main.humidity}%</p>
-        <p>Wind Speed: ${data.wind.speed} m/s</p>
-    `;
+
+  const card = document.createElement("div");
+  card.className = "weather-card";
+  card.innerHTML = `
+    <div class="w-left" aria-hidden="true">
+      <div class="w-icon">
+        <img alt="${
+          data.weather[0].description
+        }" src="https://openweathermap.org/img/wn/${
+    data.weather[0].icon
+  }@2x.png" width="72" height="72" />
+      </div>
+      <div class="w-temp">${data.main.temp + "°C"}
+      </div>
+      <div class="small">Feels like ${data.main.feels_like + "°C"}</div>
+    </div>
+
+    <div class="w-right">
+      <div>
+        <div class="location">${data.name + " " + data.sys.country}</div>
+        <div class="desc">${data.weather[0].description}</div>
+      </div>
+
+      <div class="stats" role="list">
+        <div class="stat" role="listitem">Rain:<span>${
+          data.main.humidity
+        }</span></div>
+        <div class="stat" role="listitem">Wind:<span>${
+          data.wind.speed
+        }</span></div>
+        <div class="stat" role="listitem">Pressure:<span>${
+          data.main.pressure
+        }</span></div>
+      </div>
+
+     <div class="small" style="margin-top:0.5rem">Last updated: <span>${new Date().toLocaleString()}</span></div>
+    </div>
+  `;
+  weatherResult.appendChild(card);
+  requestAnimationFrame(() => card.classList.add("show"));
 };
 
 export const renderNews = (data) => {
