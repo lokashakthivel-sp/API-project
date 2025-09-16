@@ -9,7 +9,6 @@ export const getQueryNewsData = async (query, sortOrder = "publishedAt") => {
       throw new Error("Failed to fetch news data");
     }
     const data = await res.json();
-    console.log(data);
     return data.articles;
   } catch (err) {
     console.error(err);

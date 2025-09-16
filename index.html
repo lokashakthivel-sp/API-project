@@ -40,13 +40,8 @@
           <button type="submit" id="weather-submit-btn">Get Weather</button>
           <button type="button" id="weather-my-location">My Location</button>
         </form>
-        <div id="weather-result" class="result weather-wrap">
-          <h3>Weather in ${data.name}</h3>
-          <p>Temperature: ${data.main.temp} °C</p>
-          <p>Weather: ${data.weather[0].description}</p>
-          <p>Humidity: ${data.main.humidity}%</p>
-          <p>Wind Speed: ${data.wind.speed} m/s</p>
-        </div>
+        <div id="weather-loader" class="loader"></div>
+        <div id="weather-result" class="result weather-wrap"></div>
       </section>
 
       <section id="news-section" class="content-section">
@@ -54,13 +49,14 @@
         <form id="news-search-form">
           <input type="text" id="news-search" placeholder="Search about news" />
           <select id="sorting-select">
-            <option value="publishedAt">Published At</option>
+            <option value="publishedAt">Recent</option>
             <option value="popularity">Popularity</option>
             <option value="relevancy">Relevancy</option>
           </select>
           <button type="submit">Get News</button>
         </form>
-        <div id="news-result" class="result"></div>
+        <div id="news-loader" class="loader"></div>
+        <div id="news-result" class="result news-wrap"></div>
       </section>
     </main>
     <footer><p>Made with OpenWeatherApi and NewsApi</p></footer>

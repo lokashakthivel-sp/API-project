@@ -24,7 +24,9 @@ export const renderWeather = (data) => {
 
     <div class="w-right">
       <div>
-        <div class="location">${data.name + " " + data.sys.country}</div>
+        <div class="location">${
+          data.name || "" + " " + data.sys.country || ""
+        }</div>
         <div class="desc">${data.weather[0].description}</div>
       </div>
 
@@ -54,20 +56,18 @@ export const renderNews = (data) => {
     newsResult.innerHTML = "<p>No news articles found.</p>";
     return;
   }
-  newsResult.innerHTML = data
-    .map(
-      (article) => `
-          <div class="news-article">
-              <h4><a href="${article.url}" target="_blank">${
-        article.title
-      }</a></h4>
+  data.forEach((article) => {
+    const card = document.createElement("div");
+    card.className = "news-card";
+    card.innerHTML = `<h4><a href="${article.url}" target="_blank">${
+      article.title
+    }</a></h4>
                 <p>${article.description || ""}</p>
                 <p><em>Source: ${article.source.name}</em></p>
-                <img src="${
-                  article.urlToImage || ""
-                }" alt="Article Image" style="max-width: 100%; height: auto;" />
-            </div>
-        `
-    )
-    .join("");
+                <p><em>Author: ${article.author}</em></p>
+                <img src="${article.urlToImage || ""}" alt="Article Image"/>
+        `;
+    newsResult.appendChild(card);
+    requestAnimationFrame(() => card.classList.add("show"));
+  });
 };
