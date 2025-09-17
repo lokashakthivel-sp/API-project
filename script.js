@@ -1,6 +1,7 @@
 import { getWeatherData, getWeatherDataByCoords } from "./js/api/weatherAPI.js";
 import { getQueryNewsData } from "./js/api/newsAPI.js";
-import { renderWeather, renderNews } from "./js/ui.js";
+import { getRiddleData } from "./js/api/riddleAPI.js";
+import { renderWeather, renderNews, renderRiddle } from "./js/ui.js";
 
 const navButtons = document.querySelectorAll(".nav-btn");
 const sections = document.querySelectorAll(".content-section");
@@ -128,3 +129,11 @@ const appendNews = (data) => {
     requestAnimationFrame(() => card.classList.add("show"));
   });
 };
+
+document.getElementById("riddle-btn").addEventListener("click", async () => {
+  const riddleLoader = document.getElementById("riddle-loader");
+  riddleLoader.style.display = "block";
+  const riddle_data = await getRiddleData();
+  riddleLoader.style.display = "none";
+  renderRiddle(riddle_data);
+});

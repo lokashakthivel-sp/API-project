@@ -71,3 +71,36 @@ export const renderNews = (data) => {
     requestAnimationFrame(() => card.classList.add("show"));
   });
 };
+
+export const renderRiddle = (data) => {
+  const riddleResult = document.getElementById("riddle-result");
+  riddleResult.innerHTML = "";
+  if (!data) {
+    riddleResult.innerHTML = "<p>No riddles at the moment.</p>";
+    return;
+  }
+
+  const card = document.createElement("div");
+  card.className = "riddle-card";
+  card.innerHTML = `
+        <div class="riddle-question"> ${data[0].question}</div>
+        <button class="show-answer-btn">Show Answer</button>
+        <div class="riddle-answer"> ${data[0].answer}</div>
+  `;
+  const showAns = card.querySelector(".show-answer-btn");
+  const ansEl = card.querySelector(".riddle-answer");
+
+  showAns.addEventListener("click", () => {
+    if (ansEl.style.display === "none" || ansEl.style.display === "") {
+      ansEl.style.display = "block";
+      showAns.textContent = "Hide Answer";
+    } else {
+      ansEl.style.display = "none";
+      showAns.textContent = "Show Answer";
+    }
+  });
+  riddleResult.appendChild(card);
+  requestAnimationFrame(() => {
+    card.classList.add("show");
+  });
+};

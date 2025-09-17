@@ -29,10 +29,12 @@
         <button class="nav-btn active" data-section="home-section">Home</button>
         <button class="nav-btn" data-section="weather-section">Weather</button>
         <button class="nav-btn" data-section="news-section">News</button>
+        <button class="nav-btn" data-section="riddle-section">Riddles</button>
       </nav>
     </header>
     <main>
       <section id="home-section" class="content-section active">
+        <!--  <img src="./assets/API.png" alt="API" class="api-img" />-->
         <h2>Simple API Integration Web App</h2>
         <p>
           A tiny vanilla JavaScript project that fetches weather data
@@ -42,13 +44,18 @@
         <br />
         <p>
           <b>OpenWeatherAPI</b> - The OpenWeather API is a service provided by
-          <em>OpenWeather</em> that gives you access to weather data worldwide.
-          We can fetch current and forecasted weather.
+          <em>OpenWeather</em> that gives access to weather data worldwide. We
+          can fetch current and forecasted weather.
         </p>
         <br />
         <p>
-          <b>NewsAPI</b> - The News API is a web service that lets you fetch
+          <b>GNewsAPI</b> - The GNews API is a web service that lets us fetch
           news articles and headlines from thousands of news sources worldwide.
+        </p>
+        <br />
+        <p>
+          <b>RiddleAPI</b> - The Riddle API is a web service provided by
+          <em>API Ninja</em> that supplies random question-answer style riddles.
         </p>
         <br />
         <hr style="border-color: #691a91" />
@@ -63,7 +70,15 @@
               alt="GnewsAPI Logo"
               style="background-color: white"
             />
-            <p>GnewsAPI</p>
+            <p>GNewsAPI</p>
+          </div>
+          <div>
+            <img
+              src="./assets/riddleAPI.png"
+              alt="NinjaAPI Logo"
+              style="background-color: white"
+            />
+            <p>RiddleAPI</p>
           </div>
         </div>
       </section>
@@ -94,6 +109,13 @@
         <div style="display: flex; justify-content: center">
           <button id="load-more" style="display: none">Load More</button>
         </div>
+      </section>
+
+      <section id="riddle-section" class="content-section">
+        <h2>Riddles</h2>
+        <button id="riddle-btn">Get me a Riddle</button>
+        <div id="riddle-loader" class="loader"></div>
+        <div id="riddle-result" class="result riddle-wrap"></div>
       </section>
     </main>
     <footer><p>Made with OpenWeatherApi and GnewsApi</p></footer>

@@ -117,6 +117,10 @@ main {
   position: relative;
 }
 
+.api-img {
+  height: min();
+}
+
 .logos {
   display: flex;
   margin-top: 1rem;
@@ -153,7 +157,9 @@ form input[type="text"]:focus {
 
 form button,
 form select,
-#load-more {
+#load-more,
+#riddle-btn,
+.show-answer-btn {
   padding: 0.75rem 1.25rem;
   font-size: 1rem;
   font-weight: 600;
@@ -166,7 +172,9 @@ form select,
 }
 
 form button:hover,
-#load-more:hover {
+#load-more:hover,
+#riddle-btn:hover,
+.show-answer-btn:hover {
   background: #cf9eff;
   transform: translateY(-2px);
 }
@@ -176,8 +184,13 @@ form select:hover {
 }
 
 form button:active,
-#load-more:active {
+#load-more:active,
+#riddle-btn:active {
   transform: translateY(0);
+}
+
+#riddle-btn {
+  margin-top: 2rem;
 }
 
 .loader {
@@ -319,6 +332,46 @@ form button:active,
     margin-top: max(1rem, 2vw);
     width: 100%;
   }
+}
+
+.riddle-wrap {
+  display: grid;
+  place-items: center;
+  width: 100%;
+}
+
+.riddle-card {
+  width: 85%;
+  max-width: 520px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(16, 24, 40, 0.08);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  font-size: large;
+  opacity: 0;
+  margin-top: 1.5rem;
+}
+
+.riddle-card.show {
+  opacity: 1;
+}
+
+.riddle-question {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.riddle-answer {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-left: 4px solid #00ff26;
+  background: #f7f9fc;
+  display: none;
 }
 
 @media (max-width: 560px) {
