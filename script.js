@@ -9,6 +9,8 @@ const results = document.querySelectorAll(".result");
 const navMenu = document.getElementById("nav-menu");
 const menuClose = document.getElementById("menu-close");
 
+const loadMore = document.getElementById("load-more");
+
 // ham menu for smaller screen
 document.getElementById("menu-ham").addEventListener("click", () => {
   navMenu.classList.toggle("show");
@@ -28,6 +30,7 @@ navButtons.forEach((btn) => {
     // remove active  from all
     navButtons.forEach((b) => b.classList.remove("active"));
     sections.forEach((s) => s.classList.remove("active"));
+    loadMore.style.display = "none";
     results.forEach((r) => {
       r.innerHTML = "";
     });
@@ -47,7 +50,6 @@ const news_loader = document.getElementById("news-loader");
 let query = "";
 let sortOrder = "";
 let newsPage = 1;
-const loadMore = document.getElementById("load-more");
 // searched location weather
 weather_form.addEventListener("submit", async (e) => {
   e.preventDefault();
