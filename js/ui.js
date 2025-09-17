@@ -64,8 +64,8 @@ export const renderNews = (data) => {
     }</a></h4>
                 <p>${article.description || ""}</p>
                 <p><em>Source: ${article.source.name}</em></p>
-                <p><em>Author: ${article.author}</em></p>
-                <img src="${article.urlToImage || ""}" alt="Article Image"/>
+                <p><em>Published At: ${article.publishedAt.toLocaleString()}</em></p>
+                <img src="${article.image || ""}" alt="Article Image"/>
         `;
     newsResult.appendChild(card);
     requestAnimationFrame(() => card.classList.add("show"));
